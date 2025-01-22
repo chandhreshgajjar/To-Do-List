@@ -1,0 +1,273 @@
+html, body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    height: 100%;
+    /* background-color: #d3d3d3; */
+    background-image: url("img/home-page-banner-image-5.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    font-family: cursive, Times, 'Times New Roman', serif;
+}
+
+header{
+    position: sticky;
+    top: 0rem;
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+    padding: 25px 0px 20px;
+}
+
+p{
+    margin: 0.5rem;
+}
+
+/* .banner-img{
+    width: 100%;
+    background-image: url('img/home-page-banner-image-5.png');
+    background-position: center;
+    background-size: cover;
+} */
+
+.container{
+    padding: 198px 0px;
+}
+
+.heading{
+    text-align: center;
+}
+
+.lnk-btn{
+    text-align: center;
+    padding: 30px 50px;
+}
+
+.main-lnk-btns{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lnk-btn a{
+    text-decoration: none;
+    background-color: #8c06d1;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 10px;
+}
+
+.sub-view-heading h2{
+    background-color: rgba(225, 225, 255, 0.3);
+    margin: 25px 50px;
+    border-radius: 25px;
+    color: #000000;
+}
+
+.sub-view-quote{
+    background: radial-gradient(white, skyblue);
+    padding: 16px;
+    margin: 16px 50px;
+    border-radius: 18px;
+    position: relative;
+    display: none;
+    z-index: 1;
+}
+
+.sub-view-quote h3{
+    border: 2px solid #8C03D1;
+    border-radius: 18px;
+    padding: 16px;
+}
+
+/* list-page css */
+
+.list-form{
+    margin: 25px auto;
+    background-color: white;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.main-form-field{
+    padding: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+}
+
+.form-fields{
+    width: 50%;
+}
+
+.form-fields #taskName{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.form-fields #submit{
+    text-decoration: none;
+    background-color: #8c06d1;
+    border: 0;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-family: cursive;
+    &:hover{
+        cursor: pointer;
+        background-color: rgba(140, 6, 209, 0.7);
+    }
+}
+
+.task-heading h2{
+    text-align: center;
+    font-size: 35px;
+}
+
+.tasks{
+    background: white;
+    margin: 50px 75px;
+}
+
+table{
+    width: 100%;
+    text-align: left;
+    padding: 25px;
+}
+
+.selected{
+	text-decoration: line-through 3px;
+}
+
+tr{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 0px;
+    border-bottom: 1.5px solid lightgray;
+    gap: 25px;
+}
+
+/* td, th{
+    width: 30%;
+} */
+
+.task-table{
+    background-color: #ffffb1;  /*from color #FFFF8A*/
+    margin: 50px;
+    border: 1px solid #ffffb1;
+    border-radius: 30px;
+}
+
+.form-fields a{
+    text-decoration: none;
+    background-color: #8c06d1;
+    border: 0;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 14px;
+    &:hover{
+        cursor: pointer;
+        background-color: rgba(140, 6, 209, 0.7);
+    }
+}
+
+.navigation{
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 25px;
+}
+
+.navigation ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation ul li{
+    padding: 10px 25px;
+    transition: 0.3s ease-in-out;
+}
+
+.navigation ul li a{
+    text-decoration: none;
+    font-size: 18px;
+    color: #8C03D1;
+    font-weight: 900;
+}
+
+.navigation ul li:hover{
+    transform: scale(1.2);
+}
+
+.del-btn{
+    background-color: #8C03D1;
+    border: 1px solid #8C03D1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.del-btn:hover{
+    cursor: pointer;
+    background-color: #aa5bd1;
+    border: 1px solid #aa5bd1;
+    transform: scale(0.9);
+}
+
+@media only screen and (max-width: 1230px) {
+    .list-form{
+        width: 90%;
+    }
+
+    .main-form-field{
+        padding: 30px;
+        flex-wrap: wrap;
+    }
+
+    .form-fields{
+        width: 100%;
+    }
+
+    .form-fields #taskName{
+        width: 90%;
+    }
+
+    .form-fields #submit{
+        padding: 10px 20px;
+    }
+
+    .form-fields a{
+        padding: 10px 20px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .tasks{
+        margin: 50px 20px;
+    }
+
+    td, th{
+        width: 33%;
+    }
+    
+    .task-table{
+        margin: 30px 20px;
+    }
+    
+    .sub-view-heading h2{
+        margin: 25px 10px;
+    }
+
+    .sub-view-quote{
+        margin: 16px 10px;
+    }
+}

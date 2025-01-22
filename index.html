@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | TODO List</title>
+    <link rel="stylesheet" href="home-style.css">
+</head>
+<body>
+	<header>
+        <div class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="list.html">Add Task</a></li>
+                <li><a href="task.html">View Task</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="banner-img">
+        <div class="container">
+            <div class="heading">
+                <h1>Welcome user</h1>
+                <p>Creating a Todo List helps to manage your day to day tasks. Click the button below to make one.</p>
+            </div>
+			<div class="main-lnk-btns">
+				<div class="lnk-btn">
+					<a href="list.html">Make a list</a>
+				</div>
+				<div class="lnk-btn">
+					<a href="task.html" id="view-lst">View tasks</a>
+				</div>
+			</div>
+        </div>
+    </div>
+	<script>
+		let storageLength = localStorage.length;
+		
+		if(storageLength == 0){
+			let viewBtn = document.getElementById("view-lst");
+			let visualOfViewBtn = viewBtn.parentNode;
+			visualOfViewBtn.style.display = "none";
+		}
+	</script>
+</body>
+</html>

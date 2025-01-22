@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View task | TODO List</title>
+    <link rel="stylesheet" href="home-style.css">
+    <style>
+        .fa-quote-left{
+            position: absolute;
+            left: 25px;
+            top: 3px;
+            font-size: 20px;
+            color: white;
+            background: #8C03D1;
+            border-radius: 50%;
+            padding: 7px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .fa-quote-right{
+            position: absolute;
+            right: 25px;
+            bottom: 3px;
+            font-size: 20px;
+            color: white;
+            background: #8C03D1;
+            border-radius: 50%;
+            padding: 7px;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="list.html">Add Task</a></li>
+                <li><a href="task.html">View Task</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="main-container">
+        <div class="heading">
+            <div class="main-view-heading">
+                <div class="sub-view-heading">
+                    <h2 id="title-date"></h2>
+                </div>
+                <div class="sub-view-quote">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <h3 id="quote"></h3>
+                    <i class="fa-solid fa-quote-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="task-table">
+            <table style="width: 100%" class="list-tab">
+                <tr>
+                    <th>Sr.no.</th>
+                    <th>Task</th>
+                    <th>Done</th>
+                </tr>
+            </table>            
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/33b151e3ed.js" crossorigin="anonymous"></script>
+    <script>
+        let obj = {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Accept': 'application/json'
+                }
+            }
+        // let api_url = "https://zenquotes.io/api/quotes";
+
+        // async function getapi(url){
+        //     const apiCall = await fetch(url);
+        //     let response = await(url);
+        //     console.log(response);
+        // }
+
+        // getapi(api_url);
+
+        let apiCall = fetch("http://api.quotable.io/quotes/random", obj);
+        apiCall.then((response)=>{
+            return response.json();
+        }).then((quote)=>{
+            // console.log(quote[0].content);
+            let quoteClass = document.querySelector(".sub-view-quote");
+            quoteClass.style.display = "block";
+            document.getElementById("quote").innerHTML = `Today's quote: ${quote[0].content}  <i>-${quote[0].author}</i>`;
+        })
+        let date = new Date();
+        let currentDate = date.getDate();
+        let currentMonth = date.getMonth() + 1;
+        let currentYear = date.getFullYear();
+
+        let formatedDate = `${currentDate}/${currentMonth}/${currentYear}`;
+
+        document.getElementById("title-date").innerHTML = `Your tasks of date: ${formatedDate}`; 
+        let table = document.querySelector(".list-tab");
+
+        let unitsInStorage = localStorage.length;
+        keys = Object.keys(localStorage);
+        let largestNum = Math.max(...keys);
+
+        for(let i=1; i<=largestNum; i++){
+
+            if(localStorage.getItem([i]) != null){
+                const row = document.createElement("tr");
+
+                let column1 = document.createElement("td");
+                let columnText1 = document.createTextNode(i);
+                // let column2 = document.createElement("td");
+                // let columnCheckbox2 = document.createElement("input");
+                // let columnTypeAttribute2 = columnCheckbox2.setAttribute("type", "checkbox");
+                // let columnClassAttribute2 = columnCheckbox2.setAttribute("class", "tick");
+                // let columnClickAttribute2 = columnCheckbox2.setAttribute("onclick", "taskDone()");
+                let column3 = document.createElement("td");
+                let columnText3 = document.createTextNode(localStorage.getItem([i]));
+                let column4 = document.createElement("td");
+                let columnbutton4 = document.createElement("button");
+                let columnClassAttribute4 = columnbutton4.setAttribute("class", "del-btn");
+                let columnValueAttribute4 = columnbutton4.setAttribute("value", [i]);
+                let columnClickAttribute4 = columnbutton4.setAttribute("onclick", "deleteTask()");
+                let columnText4 = document.createTextNode("Done");
+                    
+                column1.appendChild(columnText1);
+                // column2.appendChild(columnCheckbox2);
+                column3.appendChild(columnText3);
+                columnbutton4.appendChild(columnText4);
+                column4.appendChild(columnbutton4);
+
+                row.appendChild(column1);
+                // row.appendChild(column2);
+                row.appendChild(column3);
+                row.appendChild(column4);
+
+                table.appendChild(row);
+            }
+        }
+
+        // function taskDone(){
+        //     const clickedCheckbox = event.target.closest('tr');
+        //     clickedCheckbox.classList.add('selected');
+        // }
+		
+		function deleteTask(){
+			const clickedItemDelete = event.target.value;
+			console.log(clickedItemDelete);
+			let confirmation = confirm("Did you completed the task?");
+			
+			if(confirmation == true){
+                const clickedCheckbox = event.target.closest('tr');
+                clickedCheckbox.classList.add('selected');
+                setTimeout(function(){
+                    localStorage.removeItem(clickedItemDelete);
+				    location.reload();
+                }, 1000);
+			}
+		}
+    </script>
+</body>
+</html>
